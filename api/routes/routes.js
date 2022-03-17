@@ -18,21 +18,22 @@ module.exports = app => {
 
 
     // crud USERS
-    app.route('/users')
+    app.route('/users/:id')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
-        .post(app.controllers.users.save)
+        .get(admin(app.controllers.users.getById))
 
     app.route('/users')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .get(app.controllers.users.getAllUsers)
 
+    app.route('/users')
+        .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
+        .post(app.controllers.users.save)
+
     app.route('/users/:id')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .put(app.controllers.users.updateUserId)
 
-    app.route('/users/:id')
-        .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
-        .get(admin(app.controllers.users.getById))
 
     app.route('/users/:id')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
@@ -41,13 +42,15 @@ module.exports = app => {
 
 
     // crud PRONTUARIOS
+    app.route('/prontuarios/buscas/:cpf')
+        .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
+        .get(app.controllers.filings.getByCpf)
+
+
     app.route('/prontuarios')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .post(app.controllers.filings.saveFile)
 
-    app.route('/prontuarios/buscas/:cpf')
-        .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
-        .get(app.controllers.filings.getByCpf)
 
     app.route('/prontuarios/buscas/:cpf')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
@@ -58,15 +61,9 @@ module.exports = app => {
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .delete(app.controllers.filings.removeByCpf)
 
+
+    // total de prontuarios existente
     app.route('/allcount')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .get(app.controllers.allCount.getAllCount)
-
-
-    // app.route('/delete')
-    //     .post(app.controllers.refreshToken.refresh)  // controllers refresh
-
-    //    app.route('/logout', app.models.authenticateToken.token)
-    //    .all(app.controllers.logout.logout)
-    //    .get(app.controllers.allCount.getAllCount)
 }
