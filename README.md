@@ -24,12 +24,12 @@
 
 <h4>Banco de dados de configuração:</h4>
 
-1. instale o PostgresSQL windows
-2. Crie configutação knexfile.js o arquivo env vai conter as variáveis de ambientes
+1. instale o PostgresSQL para windows <a href="https://www.postgresql.org/download/windows/">Postgres</a>
+2. Crie configutação knexfile.js <br> O arquivo env vai conter as variáveis de ambientes
 
 - Defina a credencial necessária em .env
 
-<p dir="auto">Execute a migração para definir o esquema SQL básico <br>
+<p dir="auto">Execute a migrate para definir o esquema SQL básico <br>
 knex migrate:latest</p>
 
 
@@ -40,7 +40,6 @@ npm run development // dev mode</p>
 <h4>Implemented endpoints:</h4>
 
 <h5>/auth</h5>
-
 
 <table>
 <thead>
@@ -69,6 +68,8 @@ npm run development // dev mode</p>
 </tbody>
 </table>
 
+<h5>/users</h5>
+
 <table>
 <thead>
 <tr>
@@ -82,11 +83,6 @@ npm run development // dev mode</p>
 <td>/users</td>
 <td>GET</td>
 <td>getById</td>
-</tr>
-<tr>
-<td>/users/current</td>
-<td>GET</td>
-<td>GetCurrentUserAction</td>
 </tr>
 <tr>
 <td>/users/:id</td>
@@ -110,7 +106,8 @@ npm run development // dev mode</p>
 </tr>
 </tbody>
  
- <table>
+ 
+<table>
 <thead>
 <tr>
 <th>Path</th>
