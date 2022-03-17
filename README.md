@@ -37,6 +37,7 @@ knex migrate:latest</p>
 npm start // prod mode <br>
 npm run development // dev mode</p>
 
+<h4>Implemented endpoints:</h4>
 
 <h5>/auth</h5>
 
@@ -119,17 +120,17 @@ npm run development // dev mode</p>
 </thead>
 <tbody>
 <tr>
-<td>/prontuario</td>
+<td>/prontuarios</td>
 <td>GET</td>
 <td>getByCpf</td>
 </tr>
 <tr>
-<td>/prontuario</td>
+<td>/prontuarios</td>
 <td>POST</td>
 <td>saveFile</td>
 </tr>
 <tr>
-<td>/prontuario/:id</td>
+<td>/prontuarios/:id</td>
 <td>PUT</td>
 <td>removeByCpf</td>
 </tr>
