@@ -1,109 +1,98 @@
-<h1>Deploy Heroku (Backend)</h1>
+<ul dir="auto">
+<li>Modular RESTful API</li>
+<li>ES6 ES7 ES8</li>
+<li>Action based</li>
+<li>SQL based (PostgreSQL with objection.js)</li>
+<li>Migrations(knex.js)</li>
+<li>Auth (JWT/Access-token/Refresh-token)</li>
+<li>Request validation</li>
+<li>CRUD(users, posts resources)</li>
+<li>Crypto (password)</li>
+<li>Dotenv (environment variables)</li>
+</ul>
 
-<h2>Passos para o deploy...<h2>
+
+<p dir="auto">Execute a migração para definir o esquema SQL básico
+knex migrate:latest</p>
+
+
+<p dir="auto">Executar servidor <br>
+npm start // prod mode <br>
+npm run development // dev mode</p>
+
+
+<h5 dir="auto"><a id="user-content-auth" class="anchor" aria-hidden="true" href="#auth"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>/auth</h5>
+
+
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/auth/login</td>
+<td>POST</td>
+<td>LoginAction</td>
+</tr>
+<tr>
+<td>/auth/logout</td>
+<td>POST</td>
+<td>LogoutAction</td>
+</tr>
+<tr>
+<td>/auth/refresh-tokens</td>
+<td>POST</td>
+<td>RefreshTokensAction</td>
+</tr>
+</tbody>
+</table>
+
+
+<h5 dir="auto"><a id="user-content-users" class="anchor" aria-hidden="true" href="#users"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>/users</h5>
+
+
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/users</td>
+<td>GET</td>
+<td>getById</td>
+</tr>
+<tr>
+<td>/users/current</td>
+<td>GET</td>
+<td>GetCurrentUserAction</td>
+</tr>
+<tr>
+<td>/users/:id</td>
+<td>GET</td>
+<td>getAllUsers</td>
+</tr>
+<tr>
+<td>/users</td>
+<td>POST</td>
+<td>save</td>
+</tr>
+<tr>
+<td>/users</td>
+<td>PUT</td>
+<td>updateUserId</td>
+</tr>
+<tr>
+<td>/users/:id</td>
+<td>DELETE</td>
+<td>removeById</td>
+</tr>
+</tbody>
  
- <h3>1) Instalar o HEROKU CLI</h3>
- 
- npm install -g heroku-cli  (pro mac)
- 
- heroku.exe (10 windows)
-  
-<h3> 2) Verificar a instalação do Heroku CLI</h3>
- 
- heroku --version
- 		
- <h3>3) Efetuar o login com Heroku CLI</h3>
- 
- no terminal coloque: 
-  - heroku login
-    <h6>Email: <SEU E-MAIL></h6>
-    <h6>Password: **********</h6>
-    <h6>Logged in as <SEU E-MAIL></h6>
-     
-     <h5>NOTA</h5>
-     <h6>Necessário ter um usuário registrado no Heroku.</h6>
-     <h6>Acessar: <a href="https://signup.heroku.com/login">Heroku Signup</a></h6>
-     
-     <h3>4) Clonar o repositório do projeto backend</h3>
-     
-     GIT CLONE https://github.com/jorgluiz/backend-flavio
-     
-     <h3>6) Criar um projeto no Heroku via Heroku CLI</h3>
-     
-     heroku create backend-app
-     
-     <h6>IMPORTANTE</h6>
-     
-     <h6> escolher um nome único.</h6>
-     
-     <h3>7) Selecionar o buildpack para NodeJS</h3>
-     
-     heroku buildpacks:set heroku/nodejs
-     
-     <h3>8) Configurar o repositório remoto</h3>
-     
-     heroku git:remote -a backend-app
-     
-     <h6>IMPORTANTE</h6>
-    <h5> Usar o nome do seu projeto.</h5>
-
-     <h3>11) Configurar as variáveis de ambiente que a aplicação backend usa.</h3>
-     
-     <h6># Gere o seu próprio AUTH_SECRET</h6>
-     heroku config:set   <span>REFRESH_TOKEN_SECRET=42335373-0c8f-4ed8a-8773-589dfa<span>
-     
-     <h3>12) Fazer deploy da aplicação via push no repositório.</h3>
-     
-     git push heroku master
-     
-     
-    <h3> 13) Definir o tipo de escalonamento mínimo (grátis) - Passo Opcional</h3>
-     
-     heroku ps:scale web=1
-     
-     <h3>14) Consultar o log e verificar se tudo ocorreu bem - Passo Opcional</h3>
-     
-      heroku logs --tail
-     
-     
-     <h1>aqui começa interação do backend com banco de dados (postgres)<h1>
-      
-      <h1>1) Na página do heroku, vá em Overview </h1>
-      
-      depois  em: 
-      <h6>configure-Add-ons</h6>
-      
-      ![Installed add-ons](https://user-images.githubusercontent.com/35885897/158028566-f4cafba2-9e13-421e-8686-44d36d11d330.png)
-      
-      <h3>2) pesquisa por heroku postgres</h3>
-      
-      
-![posgres](https://user-images.githubusercontent.com/35885897/158028718-56421ba0-5c49-4b5c-b2c3-31faf11496ea.png)
-      
-      
-<h3>3) Selecionar o plano free</h3>
-      
-      
-![plano](https://user-images.githubusercontent.com/35885897/158028794-89f51809-29b9-47a6-a82f-e7b8517ad25e.png)
-      
-      
-<h3>4) Depois vá em Settings e Config var</h3>
-      
-<h6> variáveis de ambientes</h6>
-      
-      
-![variável](https://user-images.githubusercontent.com/35885897/158029053-d8f9ea28-28d2-45ea-a954-053643249355.png)
-      
-      
-      
-<h3>5) Colocar varável de ambiente no .env e na conexão com banco de dados</h3>
-
-
-![conexao](https://user-images.githubusercontent.com/35885897/158029411-bbea68b9-ed83-478d-922d-cdeda16522e4.png)
-
-      
-      
-
-
-
-     
