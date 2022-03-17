@@ -1,0 +1,32 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api/server.js",
+  "scripts": {
+    "start": "node api/server.js",
+    "development": "nodemon api/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "consign": "^0.1.6",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.1",
+    "moment": "^2.29.1",
+    "pg": "^8.0.3",
+    "pm2": "^5.1.2"
+  },
+  "engine": {
+    "node": ">=6.11.1"
+  }
+}
