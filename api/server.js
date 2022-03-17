@@ -7,7 +7,7 @@ const path = require('path')
 
 require('dotenv').config()
 
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json())
@@ -23,6 +23,4 @@ consign({ cwd: path.join(__dirname) })
     .then('./routes')         // chama o include
     .into(app) // injetar o fluxo API 
 
-app.listen(port || 3000, () => {
-    console.log(`conectado ${port}`)
-})
+app.listen(process.env.PORT || 3000)
