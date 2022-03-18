@@ -1,20 +1,9 @@
-// ### forma padrao sem o consign ###
-// const user = require('../api/user')
-
-// module.exports = app => {
-//     app.route('/users')
-//        .post(user.save)
-// }
-
-
-//###   all middlewares   ###
-
 const admin = require('../controllers/admin.js')
 
 module.exports = app => {
-    app.post('/signup', app.controllers.users.save)
-    app.post('/signin', app.controllers.authenticateUser.signin)
-    app.post('/refresh-token', app.controllers.checkerToken.VerifyToken, app.controllers.refreshToken.refresh)
+    app.post('/auth/signin', app.controllers.authenticateUser.signin)
+    app.post('/auth/signup', app.controllers.users.save)
+    app.post('/auth/refresh-token', app.controllers.checkerToken.VerifyToken, app.controllers.refreshToken.refresh)
 
 
     // crud USERS
