@@ -1,3 +1,4 @@
+//controle client autorização para uso de serviços
 const admin = require('../controllers/admin.js')
 
 module.exports = app => {
