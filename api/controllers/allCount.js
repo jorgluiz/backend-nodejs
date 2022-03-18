@@ -1,9 +1,9 @@
 module.exports = app => {
-    const getAllCount = (req, res) =>{
+    const getAllPosts = (req, res) =>{
         app.db('prontuarios')
         .count('*')
         .then( dataAll => res.json(dataAll) )
     }
 
-    return { getAllCount }
+    return { getAllPosts }
 }
