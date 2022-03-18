@@ -12,7 +12,7 @@ module.exports = app => {
             return res.status(400).send('User or password incorrect') // "Informe usuário e senha correto"
         }
 
-        // tratando email que vem da requisição ( req.body.email )
+         // tratando email que vem da requisição ( req.body.email )
         // obs: se vinher na req um email com letras maiúsculas conveter para minúsculas
         const reqBodyEmail = req.body.email
         const emailString = JSON.stringify(reqBodyEmail) // colocando string
@@ -20,15 +20,11 @@ module.exports = app => {
         const email = emailMinusculo.replace(/\"/g, "") // removendo  aspas
 
         // obter usuário pelo email da ( requisição )
-        try {
-            const user = await app.db('users') // pra quando usuário logar verificar se esse email tá cadastrado no banco de dados
-                .where({ email: email }) // se não encontrar o email no banco de dados ( false )
-                .first()
-                .catch(err => err.status(500).send())
-        } catch (error) {
-            return res.status(409).json({ message: `E-mail ${email} não existente no DB` })
-        }
-
+        const user = await app.db('users') // pra quando usuário logar verificar se esse email tá cadastrado no banco de dados
+            .where({ email: email }) // se não encontrar o email no banco de dados ( false )
+            .first()
+        // .catch(err => res.status(500).send())
+        if (!user) return res.status(409).json({ error: 'email does not exist' }) // ( false ) usuário não encontrado  "Usuário não encontrado"
 
         // decrypt do password para poder comparar a senha do usuario do banco de dados com senha que foi passada no body
         const passwordBytes = CryptoJS.AES.decrypt(user.password, process.env.SALT_KEY)
