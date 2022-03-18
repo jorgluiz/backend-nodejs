@@ -24,7 +24,7 @@ module.exports = app => {
             .where({ email: email }) // se não encontrar o email no banco de dados ( false )
             .first()
         // .catch(err => res.status(500).send())
-        if (!user) return res.status(409).json({ error: 'email does not exist' }) // ( false ) usuário não encontrado  "Usuário não encontrado"
+        if (!user) return res.status(409).json({ Conflict: `E-mail ${email} does not exist` }) // ( false ) usuário não encontrado  "Usuário não encontrado"
 
         // decrypt do password para poder comparar a senha do usuario do banco de dados com senha que foi passada no body
         const passwordBytes = CryptoJS.AES.decrypt(user.password, process.env.SALT_KEY)
