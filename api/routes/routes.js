@@ -6,25 +6,25 @@ module.exports = app => {
     app.post('/auth/refresh-token', app.controllers.checkerToken.VerifyToken, app.controllers.refreshToken.refresh)
 
 
-    // crud Cleint
-    app.route('/cleint/:id')
+    // crud Client
+    app.route('/client/:id')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .get(app.controllers.users.getById)
 
-    app.route('/cleint')
+    app.route('/client')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .get(app.controllers.users.getAllUsers)
 
-    app.route('/cleint')
+    app.route('/client')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .post(app.controllers.users.save)
 
-    app.route('/cleint/:id')
+    app.route('/client/:id')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .put(app.controllers.users.updateUserId)
 
 
-    app.route('/cleint/:id')
+    app.route('/client/:id')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .delete(app.controllers.users.removeById)
 
