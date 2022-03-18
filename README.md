@@ -77,7 +77,7 @@
 </tbody>
 </table>
     
-<h5>/cleint</h5>
+<h5>/client</h5>
     
 <table>
 <thead>
@@ -90,27 +90,27 @@
 <tbody>
 <tr>
 <td>GET</td>
-<td>/cleint/:id</td>
+<td>/client/:id</td>
 <td>getById</td>
 </tr>
 <tr>
 <td>GET</td>
-<td>/cleint</td>
+<td>/client</td>
 <td>getAllUsers</td>
 </tr>
 <tr>
 <td>POST</td>
-<td>/cleint</td>
+<td>/client</td>
 <td>save</td>
 </tr>
 <tr>
 <td>PUT</td>
-<td>/cleint</td>
+<td>/client</td>
 <td>updateUserId</td>
 </tr>
 <tr>
 <td>DELETE</td>
-<td>/cleint/:id</td>
+<td>/client/:id</td>
 <td>removeById</td>
 </tr>
 </tbody>
