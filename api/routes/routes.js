@@ -30,8 +30,8 @@ module.exports = app => {
 
 
 
-    // crud PRONTUARIOS
-    app.route('/posts/buscas/:cpf')
+    // crud PRONTUARIOS 
+    app.route('/posts/buscas/cpf')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .get(app.controllers.filings.getByCpf)
 
@@ -41,12 +41,12 @@ module.exports = app => {
         .post(app.controllers.filings.saveFile)
 
 
-    app.route('/posts/buscas/:cpf')
+    app.route('/posts/buscas/cpf')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .put(app.controllers.filings.updataFile)
 
 
-    app.route('/posts/buscas/:cpf')
+    app.route('/posts/buscas/cpf')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .delete(app.controllers.filings.removeByCpf)
 
