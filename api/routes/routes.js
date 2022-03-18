@@ -33,7 +33,7 @@ module.exports = app => {
     // crud PRONTUARIOS 
     app.route('/posts/buscas/cpf')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
-        .get(app.controllers.filings.getByCpf)
+        .get(app.controllers.posts.getByCpf)
 
     // total de prontuarios existente
     app.route('/allposts')
@@ -42,15 +42,15 @@ module.exports = app => {
 
     app.route('/posts')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
-        .post(app.controllers.filings.saveFile)
+        .post(app.controllers.posts.saveFile)
 
 
     app.route('/posts/buscas/cpf')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
-        .put(app.controllers.filings.updataFile)
+        .put(app.controllers.posts.updataFile)
 
 
     app.route('/posts/buscas/cpf')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
-        .delete(app.controllers.filings.removeByCpf)
+        .delete(app.controllers.posts.removeByCpf)
 }
