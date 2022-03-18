@@ -35,6 +35,10 @@ module.exports = app => {
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .get(app.controllers.filings.getByCpf)
 
+    // total de prontuarios existente
+    app.route('/allposts')
+        .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
+        .get(app.controllers.allCount.getAllPosts)
 
     app.route('/posts')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
@@ -49,10 +53,4 @@ module.exports = app => {
     app.route('/posts/buscas/cpf')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .delete(app.controllers.filings.removeByCpf)
-
-
-    // total de prontuarios existente
-    app.route('/allposts')
-        .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
-        .get(app.controllers.allCount.getAllPosts)
 }
