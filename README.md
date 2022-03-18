@@ -1,5 +1,12 @@
+<p>Não posso dizer que é um RESTful API, porque precisa implemetar os três níveis, segundo o Sr. Richardson.
+   artigo <a href="https://www.brunobrito.net.br/richardson-maturity-model/"></a>
+</p>
+<p>Minha API contém apenas dois níveis</p>
+<p>Para se tornar uma RESTful API, precia implementar filosofia HATEOS nível 3</p>
+<P>Resumidamente o HETEOS é um guia de recursos. Ex: faz uma requisição verbo GET client, 
+o reponse tem que ter links relacionado ou não aquela entidade.</P>
+<p>Por isso não posso considerar uma RESTful API</p>
 <ul dir="auto">
-    <li>Modular RESTful API</li>
     <li>ES6 ES7 ES8</li>
     <li>Action based</li>
     <li>SQL based (PostgreSQL with objection.js)</li>
