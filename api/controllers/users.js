@@ -55,7 +55,8 @@ module.exports = app => {
                 notExistsOrError(userForm, 'user already registered')
             }
         } catch (msg) {
-            return res.status(401).send(msg)
+            return res.status(409).json({message: `E-mail ${user.email} existente no DB`})
+            //retorno do error com usuário existente (409) Conflict
         }
 
         user.password = CryptoJS.AES.encrypt(req.body.password, process.env.SALT_KEY).toString() // criptografando senha do usuário

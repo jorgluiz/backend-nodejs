@@ -69,7 +69,8 @@ module.exports = app => {
 			.update(form)
 			.where({ cpf: req.params.cpf })
 			.then(_ => res.status(204).send())
-			.catch(err => res.status(500).send(err))
+			.catch(err => res.status(500).send(err)) //error servidor
+			//retorno de error (cleint = 415)
 	}
 
 

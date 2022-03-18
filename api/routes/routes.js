@@ -7,7 +7,7 @@ module.exports = app => {
 
 
     // crud Cleint
-    app.route('/cleint/id')
+    app.route('/cleint/:id')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .get(app.controllers.users.getById)
 
@@ -19,12 +19,12 @@ module.exports = app => {
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .post(app.controllers.users.save)
 
-    app.route('/cleint/id')
+    app.route('/cleint/:id')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .put(app.controllers.users.updateUserId)
 
 
-    app.route('/cleint/id')
+    app.route('/cleint/:id')
         .all(app.controllers.checkerToken.VerifyToken)   // checkerToken ### 
         .delete(app.controllers.users.removeById)
 
