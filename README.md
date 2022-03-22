@@ -1,23 +1,24 @@
 <p>
-    <h5>Não posso dizer que é um RESTful API, porque precisa implemetar os três níveis, segundo o Sr. Richardson.</h5>
-    <a href="https://www.brunobrito.net.br/richardson-maturity-model/">artigo</a>
-    </p>
-    <p>Minha API contém apenas dois níveis</p>
-    <p>Para se tornar uma RESTful API, precisa implementar filosofia HATEOS nível - 3</p>
-    <P>Resumidamente o HETEOS é um guia de recursos. Ex: faz uma requisição verbo GET Client,
-        o response tem que ter links relacionado ou não aquela entidade, tudo vai depender da regra de negócio.</P>
-    <p><h5>Por isso não posso considerar uma RESTful API</h5></p>
- <ul dir="auto">
-   <li>ES6 ES7 ES8</li>
- <li>Action based</li>
-  <li>SQL based (PostgreSQL with objection.js)</li>
-  <li>Migrations(knex.js)</li>
+<h5>Não posso dizer que é um RESTful API, porque precisa implemetar os três níveis, segundo o Sr. Richardson.</h5>
+<a href="https://www.brunobrito.net.br/richardson-maturity-model/">artigo</a>
+</p>
+<p>Minha API contém apenas dois níveis</p>
+<p>Para se tornar uma RESTful API, precisa implementar filosofia HATEOS nível - 3</p>
+<P>Resumidamente o HETEOS é um guia de recursos. Ex: faz uma requisição verbo GET Client,
+o response tem que ter links relacionado ou não aquela entidade, tudo vai depender da regra de negócio.</P>
+<p><h5>Por isso não posso considerar uma RESTful API</h5></p>
+<ul dir="auto">
+<li>ES6 ES7 ES8</li>
+<li>consign</li>
+<li>eslint</li>
+<li>SQL based (PostgreSQL)</li>
+<li>Migrations(knex.js)</li>
 <li>Auth (JWT/Access-token/Refresh-token)</li>
- <li>Request validation</li>
- <li>CRUD(users, posts resources)</li>
- <li>Crypto (password)</li>
-  <li>Dotenv (environment variables)</li>
- </ul>
+<li>Request validation</li>
+<li>CRUD(users, posts resources)</li>
+<li>Crypto (password)</li>
+<li>Dotenv (environment variables)</li>
+</ul>
     
  <h4>1. Camada Controller</h4>
  <h4>2. Camada Models</h4>
