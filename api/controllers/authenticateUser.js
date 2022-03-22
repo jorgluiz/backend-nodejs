@@ -20,7 +20,8 @@ module.exports = app => {
 		const reqBodyEmail = req.body.email
 		const emailString = JSON.stringify(reqBodyEmail) // colocando string
 		const emailMinusculo = emailString.toLocaleLowerCase() // passando pra letra minúscula
-		const email = emailMinusculo.replace(/\'/g, '') // removendo  aspas
+		// eslint-disable-next-line quotes
+		const email = emailMinusculo.replace(/\"/g, "") // removendo  aspas
 
 		// obter usuário pelo email da ( requisição )
 		const user = await app.db('users') // pra quando usuário logar verificar se esse email tá cadastrado no banco de dados
