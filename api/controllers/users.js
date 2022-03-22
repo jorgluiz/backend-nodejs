@@ -1,111 +1,112 @@
-const CryptoJS = require("crypto-js");
+/* eslint-disable linebreak-style */
+const CryptoJS = require('crypto-js')
 
 require('dotenv').config()
 
 module.exports = app => {
-     //  operador destructor
-     const {existsOrError, notExistsOrError, equalsOrError } = app.models.validation // funções do arquivo validation.js
+	//  operador destructor
+	const {existsOrError, notExistsOrError, equalsOrError } = app.models.validation // funções do arquivo validation.js
 
    
 
-    const save = async (req, res) => {
-        const user = { ...req.body }
+	const save = async (req, res) => {
+		const user = { ...req.body }
         
-        // validação pra saber se veio 'estring' vazia. Se for '' return
-        for(let key in user){
-            if(user[key] === '' || null){
-                return 
-            }
-        }
+		// validação pra saber se veio 'estring' vazia. Se for '' return
+		for(let key in user){
+			if(user[key] === '' || null){
+				return 
+			}
+		}
         
-        // se não for vazio passa por aqui
-        console.log(user)
+		// se não for vazio passa por aqui
+		console.log(user)
         
-    //    if(user){
-    //     app.db('use')
-    //     .insert([{username: user.username, email: user.email, password: user.password}])
-    //     .then(_ => _)
-    //    }
+		//    if(user){
+		//     app.db('use')
+		//     .insert([{username: user.username, email: user.email, password: user.password}])
+		//     .then(_ => _)
+		//    }
 
-        //validações
-        //garantir que o user não será cadastrado como ADMIN diretamente na página /signup
-        // if (!req.originalUrl.startsWith('/users')) user.admin = false // validação se não tiver com /users  ( obrigatoriamente o ADMIN será false)
-        // if (!req.user || !req.user.admin) user.admin = false // validação se user n estiver logado (!req.user) || se não tiver set como ADMIN (!req.user.admin)
+		//validações
+		//garantir que o user não será cadastrado como ADMIN diretamente na página /signup
+		// if (!req.originalUrl.startsWith('/users')) user.admin = false // validação se não tiver com /users  ( obrigatoriamente o ADMIN será false)
+		// if (!req.user || !req.user.admin) user.admin = false // validação se user n estiver logado (!req.user) || se não tiver set como ADMIN (!req.user.admin)
 
 
-        // if(req.params.id) { //se o id estiver setado
-        //     user.id = req.params.id
-        // }
+		// if(req.params.id) { //se o id estiver setado
+		//     user.id = req.params.id
+		// }
         
-        try{
-            existsOrError(user.username, 'Nome não informado')
-            existsOrError(user.email, 'E-mail não informado')
-            existsOrError(user.password, 'Senha nao informada')
-            existsOrError(user.confirmPassword, 'Confirmação de senha inválida')
-            equalsOrError(user.password, user.confirmPassword, 'Senha não conferem')
+		try{
+			existsOrError(user.username, 'Nome não informado')
+			existsOrError(user.email, 'E-mail não informado')
+			existsOrError(user.password, 'Senha nao informada')
+			existsOrError(user.confirmPassword, 'Confirmação de senha inválida')
+			equalsOrError(user.password, user.confirmPassword, 'Senha não conferem')
 
-        }catch(msg){
-            return res.status(400).send(msg) // error lado do client
-        }
+		}catch(msg){
+			return res.status(400).send(msg) // error lado do client
+		}
 
-        try {
-            const userForm = await app.db('users')
-            .where({ email: user.email }).first()
-            if(!user.id){
-                notExistsOrError(userForm, 'user already registered')
-            }
-        } catch (msg) {
-            return res.status(409).json({message: `E-mail ${user.email} existente no DB`})
-            //retorno do error com usuário existente (409) Conflict
-        }
+		try {
+			const userForm = await app.db('users')
+				.where({ email: user.email }).first()
+			if(!user.id){
+				notExistsOrError(userForm, 'user already registered')
+			}
+		} catch (msg) {
+			return res.status(409).json({message: `E-mail ${user.email} existente no DB`})
+			//retorno do error com usuário existente (409) Conflict
+		}
 
-        user.password = CryptoJS.AES.encrypt(req.body.password, process.env.SALT_KEY).toString() // criptografando senha do usuário
-        delete user.confirmPassword // deletar confirmação da senha, pq não vai ser inserida no bando de dados
+		user.password = CryptoJS.AES.encrypt(req.body.password, process.env.SALT_KEY).toString() // criptografando senha do usuário
+		delete user.confirmPassword // deletar confirmação da senha, pq não vai ser inserida no bando de dados
 
     
-            app.db('users')
-               .insert(user) // insert do usuário
-               .then(_ => res.status(204).send())
-               .catch(err => res.status(500).json({msg: "internal error server"}))
-    }
+		app.db('users')
+			.insert(user) // insert do usuário
+			.then(_ => res.status(204).send())
+			.catch(err => res.status(500).json({msg: 'internal error server'}))
+	}
 
 
-    //Description: consultar todos os usuários
+	//Description: consultar todos os usuários
 
-    const getAllUsers = (req, res) => {
-        app.db('users')
-            .select('username', 'email', 'admin')
-            .then(users => res.json(users))
-            .catch(err => res.status(500).send(err))
-    }
+	const getAllUsers = (req, res) => {
+		app.db('users')
+			.select('username', 'email', 'admin')
+			.then(users => res.json(users))
+			.catch(err => res.status(500).send(err))
+	}
 
 
-    //Description: editar usuário
+	//Description: editar usuário
 
-    const updateUserId = (req, res) => {
-        const user = { ...req.body }
+	const updateUserId = (req, res) => {
+		const user = { ...req.body }
 
-        app.db('users')
-            .update(user)
-            .where({ id: user.id })
-            .then(_ => res.status(204).send())
-            .catch(err => res.status(500).send(err))
-    }
+		app.db('users')
+			.update(user)
+			.where({ id: user.id })
+			.then(_ => res.status(204).send())
+			.catch(err => res.status(500).send(err))
+	}
 
-    //Description: selecionar por Id
+	//Description: selecionar por Id
 
-    const getById = (req, res) => { 
-        app.db('users')
-            .where({ id: req.params.id })
-            // .first()
-            .select('id', 'username', 'email', 'admin')
-            .then(user => res.json(user))
-            .catch(err => res.status(500).send(err))
-    }
+	const getById = (req, res) => { 
+		app.db('users')
+			.where({ id: req.params.id })
+		// .first()
+			.select('id', 'username', 'email', 'admin')
+			.then(user => res.json(user))
+			.catch(err => res.status(500).send(err))
+	}
 
-     //Description: deletando por Id
+	//Description: deletando por Id
 
-    const removeById = (req, res) => {
+	const removeById = (req, res) => {
 		app.db('users')
 			.where({ id: req.params.id })
 			.del()
@@ -114,7 +115,7 @@ module.exports = app => {
 	}
 
 
-    return { save, getAllUsers, updateUserId, getById, removeById }
+	return { save, getAllUsers, updateUserId, getById, removeById }
 
 } // chave do module.exports
 
@@ -194,4 +195,4 @@ module.exports = app => {
 
 //     return { save, get, getById }
 
- // chave do module.exports
+// chave do module.exports

@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 module.exports = app => {
 
 	const { existsOrError, notExistsOrError } = app.models.validation
@@ -88,12 +89,12 @@ module.exports = app => {
 } 
 
 
-	// Description:  obter all prontuários
+// Description:  obter all prontuários
 
-	// const getAllProntuarios = (req, res) => {
-	// 	app.db('prontuarios')
-	// 		.select('namefull', 'nameMae', 'sus', 'cpf', 'dataNacimento', 'sexo', 'rg', 'uf', 'dataEmissao', 'endereco', 'bairro', 'cidade', 'cep', 'fone', 'obs').first()
-	// 		.then(prontuarios => res.json(prontuarios))
-	// 		.catch(err => res.status(500).send(err))
-	// }
+// const getAllProntuarios = (req, res) => {
+// 	app.db('prontuarios')
+// 		.select('namefull', 'nameMae', 'sus', 'cpf', 'dataNacimento', 'sexo', 'rg', 'uf', 'dataEmissao', 'endereco', 'bairro', 'cidade', 'cep', 'fone', 'obs').first()
+// 		.then(prontuarios => res.json(prontuarios))
+// 		.catch(err => res.status(500).send(err))
+// }
 

@@ -1,45 +1,46 @@
+/* eslint-disable linebreak-style */
 const jwt = require('jsonwebtoken')
 
 require('dotenv').config()
 
 
 module.exports = app => {
-    const VerifyToken = async (req, res, next) => {
+	const VerifyToken = async (req, res, next) => {
      
-        const tokenHeader = req.headers['authorization']
-        const token = tokenHeader && tokenHeader.split(" ")[1]
-        // console.log('vim do refresg',token)
+		const tokenHeader = req.headers['authorization']
+		const token = tokenHeader && tokenHeader.split(' ')[1]
+		// console.log('vim do refresg',token)
 
-        if (!token) return res.status(401).json({ error: "Restricted access" })
+		if (!token) return res.status(401).json({ error: 'Restricted access' })
 
-        try {
-            // decodificando token
-            const decoded = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+		try {
+			// decodificando token
+			const decoded = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
 
-               if(!decoded){
-                   res.status(401).json({ error: "invalid token" })
-               }
-                    const user = await app.db('users')
-                        .where({ id: decoded.id })
-                        .first()
-                        .then(user => user)
-                        .catch(err => err)
+			if(!decoded){
+				res.status(401).json({ error: 'invalid token' })
+			}
+			const user = await app.db('users')
+				.where({ id: decoded.id })
+				.first()
+				.then(user => user)
+				.catch(err => err)
 
-                    if(user.id === decoded.id)
-                    // req.decoded = decoded
-                    next()
+			if(user.id === decoded.id)
+			// req.decoded = decoded
+				next()
                     
-        } catch (error) {
-            if (error) return res.status(401).json({
-                error: [
-                    {
-                        msg: "Invalid Token"
-                    }
-                ]
-            })
-        }
-    }
-    return { VerifyToken }
+		} catch (error) {
+			if (error) return res.status(401).json({
+				error: [
+					{
+						msg: 'Invalid Token'
+					}
+				]
+			})
+		}
+	}
+	return { VerifyToken }
 }
 
 
